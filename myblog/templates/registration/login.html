@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title>Login</title>
+
+        {% load staticfiles %}
+        <link rel="stylesheet" type='text/css' href='{% static 'material.css'%}' />
+        <link rel="stylesheet" type='text/css' href='{% static 'login.css'%}' />
+        
+    </head>
+    <body>
+<h1> MyBlog</h1>
+
+        <div class="mdl-card mdl-shadow--2dp mdl-cell--4-offset-desktop mdl-cell--4-col">
+            
+        <form method="post">
+            <div class="mdl-card__title" >
+            <h4>login</h4>
+            </div>
+            {% csrf_token %}
+            <div class="mdl-card__supporting-text">
+            <span> {{form.username.label_tag}}  </span>
+            {{form.username}}</br></br>
+            <span> {{form.password.label_tag}}  </span>
+            {{form.password}}</br></br>
+            <button class="mdl-color--indigo mdl-color-text--white mdl-button" type="submit">Login</button>
+        &nbsp<a class="mdl-button mdl-color--indigo mdl-color-text--white">Register</a></div>
+        </form>
+        </div>
+    </body>
+</html>

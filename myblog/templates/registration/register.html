@@ -1,0 +1,14 @@
+<html>
+    <head>
+        <title>Bookmarks-Register</title>
+    </head>
+    <body>
+    <form method="post" action="." enctype="multipart/form-data">
+        {%csrf_token%}
+{{ form.as_p }}
+<input type="submit" value="register" />
+</form>
+
+    </body>
+</html>
+        
