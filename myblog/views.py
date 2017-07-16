@@ -5,6 +5,7 @@ from django.shortcuts import render
 from myblog.form import *
 from django.http import HttpResponseRedirect
 from .models import *
+import os
 
 # Create your views here.
 def main_page(request):
@@ -21,13 +22,14 @@ def register_page(request):
                 email=form.cleaned_data['email'],
                 password=form.cleaned_data['password1']
             )
-           
-            with open('myblog/static/xyz.jpg', 'wb+') as destination:
-                 for chunk in request.FILES['profilepic'].chunks():
+            f=request.FILES['profilepic']
+            with open('myblog/static/'+f.name, 'wb+') as destination:
+                 for chunk in f.chunks():
                      destination.write(chunk)
            
-            mybloguser=MyBlogUser.objects.create(user=user,profilepic=request.FILES['profilepic'])
+            mybloguser=MyBlogUser.objects.create(user=user,profilepic=f)
             return HttpResponseRedirect("/")
     else:
         form=RegistrationForm()
     return render(request,"registration/register.html",{"form":form})
+
